@@ -93,14 +93,6 @@ ref_energy = 17.238525
 
 
 @pytest.mark.slow
-def test_opt_no_precon(atoms):
-    opt = PreconLBFGS(atoms, use_armijo=True, precon='ID')
-    opt.run(fmax=0.1)
-    e = atoms.get_potential_energy()
-    assert abs(e - ref_energy) < 0.01
-
-
-@pytest.mark.slow
 def test_opt_with_precon(atoms, forcefield_params):
     kw = dict(forcefield_params)
     kw.pop('vdws')
